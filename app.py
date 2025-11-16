@@ -14,19 +14,20 @@ app = Flask(__name__)
 # Aplicando o 'crachá' de segurança em toda a aplicação
 CORS(app)
 
-try:
-    GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
-    genai.configure(api_key=GEMINI_API_KEY)
-
-except Exception as e:
-    print(f"Erro ao configurar a API do Gemini: {e}")
-    # Se falhar na configuração, avisamos e saímos
-    raise ValueError("Chave de API do Google (GEMINI_API_KEY) não encontrada ou inválida. Defina a variável de ambiente.")
 
 def get_ai_analysis(email_content):
     """
     Usa a API do Gemini (Flash) para classificar E gerar uma resposta, forçando a saída em JSON.
     """
+    try:
+        GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
+        genai.configure(api_key=GEMINI_API_KEY)
+
+    except Exception as e:
+        print(f"Erro ao configurar a API do Gemini: {e}")
+        # Se falhar na configuração, avisamos e saímos
+        raise ValueError("Chave de API do Google (GEMINI_API_KEY) não encontrada ou inválida. Defina a variável de ambiente.")
+
 
     system_prompt = """
     Você é  o assistente de IA de triagem de emails da Nexus Finanças.
