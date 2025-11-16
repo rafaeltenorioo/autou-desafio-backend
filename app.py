@@ -60,15 +60,15 @@ def get_ai_analysis(email_content):
     """
 
     # "Aqui definimos o "truque": queremos que a resposta seja JSON."
-    generation_config = {
-        "response_mime_type": "application/json",
-    }
+    # generation_config = {
+    #     "response_mime_type": "application/json",
+    # }
 
     # "Aqui criamos o 'Especialista' (Modelo Gemini 1.5 Flash) com a regra do JSON."
     # O "flash" é o modelo mais rápido, ideal para apps web.
     model = genai.GenerativeModel(
         'gemini-2.5-flash',
-        generation_config=generation_config
+        # generation_config=generation_config
     )
     try:
         # "Aqui fazemos a 'ligação' com o 'manual' e o 'email'."
